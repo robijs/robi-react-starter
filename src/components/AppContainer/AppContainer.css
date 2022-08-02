@@ -1,0 +1,9 @@
+.appcontainer {
+    display: flex;
+    background: var(--secondary);
+}
+
+.appcontainer,
+.appcontainer {
+    transition: background-color 300ms;
+}

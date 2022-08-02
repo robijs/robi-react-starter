@@ -1,0 +1,45 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    padding: 60px 20px;
+    background-color: var(--background);
+    border-right: solid 1px var(--border-color);
+}
+
+.sidebar .title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 0px;
+}
+
+.sidebar i {
+    margin-right: 12px;
+    color: var(--primary);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.nav li {
+    border-radius: 10px;
+    list-style-type: none;
+    padding: 12px;
+}
+
+.nav li a,
+.nav li a:visited,
+.nav li a:focus,
+.nav li a:active {
+    text-decoration: none;
+    color: var(--color);
+}
+
+.nav li.selected,
+.nav li.selected a,
+.nav li.selected i {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
