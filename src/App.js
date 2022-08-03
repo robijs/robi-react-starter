@@ -11,7 +11,7 @@ import './App.css'
 import AppContainer from './components/AppContainer/AppContainer'
 import MainContainer from './components/MainContainer/MainContainer'
 import Sidebar from './components/Sidebar/Sidebar'
-import { lists, routes } from './config'
+import { app, lists, routes } from './config'
 
 export default function App() {
     const { pathname } = useLocation();
@@ -28,11 +28,8 @@ export default function App() {
         setTitle(routes.find(route => route.path === pathname).title);
     }, [ pathname ]);
     
-    const appname = 'App';
-    const localhost = 'http://localhost';
-    const localport = '3000';
-    const proxyport = '8081';
-    const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${appname}` : window.location.href.split('/SiteAssets/')[0];
+    const { name, localhost, localport, proxyport } = app;
+    const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${name}` : window.location.href.split('/SiteAssets/')[0];
 
     Web(baseUrl);
 
@@ -48,7 +45,7 @@ export default function App() {
     return (
         loaded &&
         <AppContainer>
-            <Sidebar appname={appname} pathname={pathname} />
+            <Sidebar appname={name} pathname={pathname} />
             <MainContainer title={title} lists={lists} />
         </AppContainer>
     );

@@ -6,6 +6,13 @@ import List from './pages/List'
 // Lists
 import Contacts from './lists/Contacts/Schema'
 
+const app = {
+    name: 'App',
+    localhost: 'http://localhost',
+    localport: '3000',
+    proxyport: '8081'
+}
+
 const lists = {
     Contacts
 }
@@ -42,6 +49,7 @@ const routes = [
 ];
 
 export {
+    app,
     routes,
     lists
 }
