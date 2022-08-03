@@ -1,0 +1,228 @@
+.MuiDataGrid-root {
+    border: none !important;
+    font-family: var(--font-family) !important;
+}
+
+.MuiButton-textPrimary {
+    color: var(--primary) !important;
+}
+
+.Mui-checked {
+    color: var(--primary) !important;
+}
+
+.Mui-checked + .MuiSwitch-track {
+    background-color: var(--primary) !important;
+}
+
+.MuiInput-root::after {
+    border-bottom-color: var(--primary) !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: var(--primary) !important;
+}
+
+/* Toolbar */
+.rhcc-table .MuiDataGrid-toolbarContainer {
+    margin-bottom: 12px;
+}
+
+.rhcc-table .MuiButton-startIcon {
+    display: flex;
+    align-items: center;
+}
+
+.rhcc-table .MuiButton-startIcon svg {
+    font-size: 18px;
+}
+
+.rhcc-table .MuiButton-root {
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: unset;
+    text-transform: unset;
+    border-radius: 10px;
+    padding: 6px 12px;
+    background-color: var(--button-background);
+}
+
+.rhcc-table .MuiButton-root:not(:last-child) {
+    margin-right: 12px;
+}
+
+.rhcc-table .MuiButton-root:hover {
+    background-color: var(--button-background);
+}
+
+/* Headers */
+.rhcc-table .MuiDataGrid-columnHeaders {
+    border-bottom: none;
+    user-select: none;
+}
+
+.rhcc-table .MuiButtonBase-root.MuiIconButton-root {
+    margin-left: 4px;
+    border-radius: 8px;
+}
+
+.rhcc-table .MuiButtonBase-root.MuiIconButton-root svg {
+    font-size: 16px;
+}
+
+.rhcc-table .MuiButtonBase-root.MuiIconButton-root:hover {
+    background-color: var(--button-background);
+}
+
+/* Row */
+.rhcc-table .MuiDataGrid-row {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.rhcc-table .MuiDataGrid-row:hover {
+    background-color: var(--primary-19) !important;
+}
+
+.rhcc-table .MuiDataGrid-row:nth-child(odd) {
+    background-color: var(--background);
+}
+
+.rhcc-table .MuiDataGrid-columnHeader:focus,
+.rhcc-table .MuiDataGrid-columnHeader:focus-within,
+.rhcc-table .MuiDataGrid-columnHeader *:focus,
+.rhcc-table .MuiDataGrid-columnHeader *:focus-within,
+.rhcc-table .MuiDataGrid-cell:focus,
+.rhcc-table .MuiDataGrid-cell:focus-within {
+    outline: none !important;
+}
+
+.rhcc-table .MuiDataGrid-row.Mui-selected {
+    background-color: var(--selected-row) !important;
+    color: var(--primary) !important;
+}
+
+/* Cell */
+.rhcc-table .MuiDataGrid-cell {
+    border-bottom: none !important;
+}
+
+.rhcc-table .MuiDataGrid-cell:first-child {
+    border-radius: 10px 0px 0px 10px;
+}
+
+/* Footer */
+.rhcc-table .MuiDataGrid-footerContainer {
+    border-top: none;
+}
+
+.rhcc-table .MuiTablePagination-toolbar * {
+    font-family: var(--font-family) !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Checkbox */
+.rhcc-table .MuiCheckbox-root:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+.rhcc-table .MuiCheckbox-root svg[data-testid="CheckBoxOutlineBlankIcon"] {
+    fill: lightgray;
+}
+
+.rhcc-table .MuiButtonBase-root.MuiCheckbox-root:hover {
+    background-color: inherit;
+}
+
+/* Buttons */
+.btn {
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 6px 12px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    line-height: 1.5;
+}
+
+.btn:active,
+.btn:focus {
+    outline: none;
+}
+
+.btn-light {
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: var(--button-background);
+    color: var(--primary);
+}
+
+/* Tool tip */
+.MuiDataGrid-panel .MuiPaper-rounded,
+.MuiDataGrid-menu .MuiPaper-rounded {
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    border: solid 1px var(--border-color);
+}
+
+.MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-filterForm {
+    padding: 24px 12px;
+}
+
+.MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-panelWrapper {
+    padding: 12px;
+}
+
+.MuiList-root.MuiList-padding.MuiDataGrid-menuList {
+    padding: 10px 0px;
+}
+
+.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters {
+    margin: 0px 10px;
+    border-radius: 6px;
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters:hover {
+    background-color: var(--primary-19);
+}
+
+.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected svg {
+    fill: var(--secondary);
+}
+
+/* Filter menu */
+.MuiDataGrid-panel .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.MuiDataGrid-panel .MuiInputBase-root input.MuiInputBase-input.MuiInput-input {
+    font-size: 13px;
+}
+
+.MuiDataGrid-panel .MuiFormLabel-root {
+    font-size: 13px;
+}
+
+.MuiDataGrid-panel .MuiDataGrid-panelFooter button {
+    text-transform: unset;
+    font-family: var(--font-family);
+    letter-spacing: unset;
+}

@@ -11,7 +11,7 @@ import './App.css'
 import AppContainer from './components/AppContainer/AppContainer'
 import MainContainer from './components/MainContainer/MainContainer'
 import Sidebar from './components/Sidebar/Sidebar'
-import routes from './Routes'
+import { lists, routes } from './config'
 
 export default function App() {
     const { pathname } = useLocation();
@@ -22,17 +22,17 @@ export default function App() {
         document.fonts.load("1em bootstrap-icons").then(() => {
             setLoaded(true);
         });
-    }, []);
+    });
 
     useEffect(() => {
         setTitle(routes.find(route => route.path === pathname).title);
     }, [ pathname ]);
     
-    const appName = 'App';
+    const appname = 'App';
     const localhost = 'http://localhost';
-    const localPort = '3000';
-    const proxyPort = '8081';
-    const baseUrl = window.location.origin === `${localhost}:${localPort}` ? `${localhost}:${proxyPort}/sites/${appName}` : window.location.href.split('/SiteAssets/')[0];
+    const localport = '3000';
+    const proxyport = '8081';
+    const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${appname}` : window.location.href.split('/SiteAssets/')[0];
 
     Web(baseUrl);
 
@@ -48,8 +48,8 @@ export default function App() {
     return (
         loaded &&
         <AppContainer>
-            <Sidebar pathname={pathname} />
-            <MainContainer title={title} />
+            <Sidebar appname={appname} pathname={pathname} />
+            <MainContainer title={title} lists={lists} />
         </AppContainer>
     );
 }

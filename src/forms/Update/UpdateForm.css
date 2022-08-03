@@ -1,0 +1,8 @@
+.MuiDialog-root .MuiPaper-root {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.MuiDialog-root .form-group form .MuiFormControl-root:not(:last-child) {
+    margin-bottom: 24px;
+}
