@@ -1,6 +1,7 @@
 .MuiDialog-root .MuiPaper-root {
     padding: 20px;
     border-radius: 20px;
+    box-shadow: var(--box-shadow);
 }
 
 .MuiDialog-root .form-group form .MuiFormControl-root:not(:last-child) {

@@ -177,9 +177,8 @@
     padding: 24px 12px;
 }
 
-.MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-panelWrapper {
-    padding: 12px;
-}
+/* .MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-panelWrapper {
+} */
 
 .MuiList-root.MuiList-padding.MuiDataGrid-menuList {
     padding: 10px 0px;
@@ -213,12 +212,12 @@
     font-weight: 500;
 }
 
-.MuiDataGrid-panel .MuiInputBase-root input.MuiInputBase-input.MuiInput-input {
+.MuiDataGrid-panel .MuiFormLabel-root,
+.MuiDataGrid-panel .MuiInputBase-root input.MuiInputBase-input.MuiInput-input,
+.MuiDataGrid-panel .MuiNativeSelect-select {
     font-size: 13px;
-}
-
-.MuiDataGrid-panel .MuiFormLabel-root {
-    font-size: 13px;
+    letter-spacing: normal;
+    font-family: var(--font-family);
 }
 
 .MuiDataGrid-panel .MuiDataGrid-panelFooter button {

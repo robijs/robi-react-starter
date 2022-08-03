@@ -15,16 +15,12 @@ export default function Table({ list, items, columns }) {
     const [open, setOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
+    function onClose() {
         setOpen(false);
-    };
+    }
 
     useEffect(() => {
-        if (list) {
+        if (list && !items.length) {
             (async () => {
                 const items = await sp.web.lists.getByTitle(list).items.getAll();
                 const data = items.map((item) => {
@@ -56,44 +52,22 @@ export default function Table({ list, items, columns }) {
                 checkboxSelection={true}
                 disableSelectionOnClick={true}
                 onRowClick={(params, event) => {
-                    console.log(params, event);
-
-                    handleClickOpen(true);
-
-                    let item = {
-                        id: params.row.id,
-                        lastName: params.row.lastName,
-                        firstName: params.row.firstName,
-                        mi: params.row.mi,
-                        mtfLocation: params.row.mtfLocation,
-                        missionType: params.row.missionType,
-                        missionLocation: params.row.missionLocation,
-                        status: params.row.status,
-                        ptdo: params.row.ptdo,
-                        artsTracker: params.row.artsTracker,
-                        mission: params.row.mission,
-                        departureDate: params.row.departureDate,
-                        returnDate: params.row.returnDate,
-                        remarks: params.row.remarks,
-                        aocMos: params.row.aocMos,
-                        rank: params.row.rank
-                    };
-                    
-                    setSelectedItem(item);
+                    setOpen(true);
+                    setSelectedItem(params.row);
                 }}
             />
             <div>
-                <Dialog open={open} onClose={handleClose} fullWidth>
-                    <DialogTitle>Update Tasker</DialogTitle>
+                <Dialog open={open} onClose={onClose} fullWidth>
+                    <DialogTitle>Update {list} Item #{selectedItem.id}</DialogTitle>
                     <DialogContent>
-                        <UpdateForm item={selectedItem} list={list} columns={columns}  />
+                        <UpdateForm item={selectedItem} columns={columns}  />
                     </DialogContent>
                     <DialogActions sx={{ marginTop: '48px' }}>
                             <div style={{ flex: 2 }}>
                                 <button className='btn btn-light' onClick={() => { console.log('delete') }}>Delete</button> 
                             </div>
                             <div>
-                                <button className='btn' onClick={handleClose}>Cancel</button>
+                                <button className='btn' onClick={onClose}>Cancel</button>
                                 <button className='btn btn-primary' onClick={() => { console.log('update') }}>Update</button>
                             </div>
                         </DialogActions>

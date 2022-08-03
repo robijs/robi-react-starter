@@ -1,22 +1,8 @@
-import React, { useEffect } from 'react'
-// import { sp } from '@pnp/sp'
-import '@pnp/sp/webs'
-import '@pnp/sp/files'
-import '@pnp/sp/items'
-import '@pnp/sp/lists'
-import '@pnp/sp/fields'
+import React from 'react'
 import { Input, InputLabel, FormControl, FormHelperText } from '@mui/material'
 import './UpdateForm.css'
 
-function UpdateForm({ list, columns, item }) {
-    useEffect(() => {
-        (async () => {
-            // Get item
-        })();
-
-        return () => { };
-    });
-
+function UpdateForm({ columns, item }) {
     return (
         <div className="form-group">
             <form>
