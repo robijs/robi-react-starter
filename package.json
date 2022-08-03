@@ -41,7 +41,7 @@
         "eject": "react-scripts eject",
         "proxy": "node ./api-server.js",
         "dev": " concurrently \"npm run db\" \"npm run react-scripts-start --silent\"",
-        "db": "npx json-server --watch ./json-server/db.json --id Id",
+        "db": "npx json-server --watch ./json-server/db.json --id Id --port 2035",
         "reset": "node ./scripts/reset.mjs",
         "react-scripts-start": "GENERATE_SOURCEMAP=false react-scripts start"
         
