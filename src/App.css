@@ -66,3 +66,43 @@ body::-webkit-scrollbar {
     border-radius: 8px;
     background-clip: content-box;
 }
+
+/* Buttons */
+.btn {
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 6px 12px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+}
+
+.btn[disabled] {
+    opacity: .65;
+}
+
+
+.btn i {
+    font-size: 19px;
+    display: inline-flex;
+}
+
+.btn:active,
+.btn:focus {
+    outline: none;
+}
+
+.btn-light {
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: var(--button-background);
+    color: var(--primary);
+}

@@ -11,3 +11,15 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+/* Utility classes */
+
+/** Margin */
+.mr-1 {
+    margin-right: 8px;
+}
+
+/** Display */
+.flex {
+    display: flex;
+}

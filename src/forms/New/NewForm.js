@@ -8,11 +8,10 @@ import '@pnp/sp/items'
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { Input, InputLabel, FormControl, FormHelperText } from '@mui/material'
-import './UpdateForm.css'
+import './NewForm.css'
 
-function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
+function NewForm({ open, setOpen, setRows, rows, columns, list }) {
     const { handleSubmit, register, unregister, reset } = useForm();
-    const { confirm } = window;
 
     // Reset form when item changes
     useEffect(() => {
@@ -23,7 +22,7 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
             });
 
         reset();
-    }, [reset, unregister, item, columns])
+    }, [reset, unregister, columns])
 
     function onClose() {
         setOpen(false);
@@ -38,64 +37,34 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
             }
         }
 
-        console.log(data);
-
-        await sp.web.lists
+        const { data: newItem } = await sp.web.lists
             .getByTitle(list)
             .items
-            .getById(item.id)
-            .update(data);
+            .add(data);
 
-        const updatedRows = rows.map(row => {
-            if (row.id === item.id) {
-                values.id = item.id;
-                values.Id = item.id;
-                return values;
-            } else {
-                return row;
-            }
-        });
 
-        setRows(updatedRows);
+        newItem.id = newItem.Id;
+
+        setRows(rows.concat([newItem]));
         setOpen(false);
     }
-
-    async function onDelete() {
-        if (
-            // TODO: Replace with dialog
-            confirm(
-                `Are you sure you want to delete item #${item.id} from '${list}'?`
-            )
-        ) {
-            await sp.web.lists
-                .getByTitle(list)
-                .items
-                .getById(item.id)
-                .recycle();
-
-            setRows(rows.filter(row => row.id !== item.id));
-            setOpen(false);
-        }
-    };
 
     return (
         <div className="form-group">
             <Dialog open={open} onClose={onClose} fullWidth>
-                <DialogTitle>Update {list} Item #{item.id}</DialogTitle>
+                <DialogTitle>New {list} Item</DialogTitle>
                 <DialogContent>
                     <form>
                     {
                         columns
                             .filter(({ field }) => field.toLowerCase() !== 'id')
                             .map(({ field, headerName, description }) => {
-                                console.log(item[field]);
-
                                 return (
                                     <FormControl key={field} variant="standard" fullWidth>
                                         <InputLabel htmlFor={`field-${field}`}>{headerName}</InputLabel>
                                         <Input 
                                             id={`field-${field}`}
-                                            value={item[field] || ""}
+                                            // value={""}
                                             aria-describedby={`${field}-helper-text`}
                                             {...register(field)}
                                         />
@@ -112,12 +81,9 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
                     </form>
                 </DialogContent>
                 <DialogActions sx={{ marginTop: '48px' }}>
-                    <div style={{ flex: 2 }}>
-                        <button className='btn btn-light' onClick={onDelete}>Delete</button>
-                    </div>
                     <div className='flex'>
                         <button className='btn' onClick={onClose}>Cancel</button>
-                        <button className='btn btn-primary' onClick={handleSubmit(onUpdate)}>Update</button>
+                        <button className='btn btn-primary' onClick={handleSubmit(onUpdate)}>Create</button>
                     </div>
                 </DialogActions>
             </Dialog>
@@ -126,4 +92,4 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
     );
 };
 
-export default UpdateForm;
+export default NewForm;

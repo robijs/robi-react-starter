@@ -45,11 +45,6 @@
     text-transform: unset;
     border-radius: 10px;
     padding: 6px 12px;
-    background-color: var(--button-background);
-}
-
-.rhcc-table .MuiButton-root:not(:last-child) {
-    margin-right: 12px;
 }
 
 .rhcc-table .MuiButton-root:hover {
@@ -137,34 +132,6 @@
     background-color: inherit;
 }
 
-/* Buttons */
-.btn {
-    cursor: pointer;
-    font-family: var(--font-family);
-    font-size: 14px;
-    padding: 6px 12px;
-    font-weight: 500;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    line-height: 1.5;
-}
-
-.btn:active,
-.btn:focus {
-    outline: none;
-}
-
-.btn-light {
-    color: var(--primary);
-}
-
-.btn-primary {
-    background-color: var(--button-background);
-    color: var(--primary);
-}
-
 /* Tool tip */
 .MuiDataGrid-panel .MuiPaper-rounded,
 .MuiDataGrid-menu .MuiPaper-rounded {
@@ -174,7 +141,11 @@
 }
 
 .MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-filterForm {
-    padding: 24px 12px;
+    padding: 16px 12px;
+}
+
+.MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-filterForm .MuiFormControl-root.MuiDataGrid-filterFormDeleteIcon {
+    justify-content: center;
 }
 
 /* .MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-panelWrapper {

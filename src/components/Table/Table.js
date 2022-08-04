@@ -5,15 +5,29 @@ import '@pnp/sp/lists'
 import '@pnp/sp/fields'
 import '@pnp/sp/site-users/web'
 import '@pnp/sp/items'
-import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+import {
+    DataGrid,
+    GridToolbarContainer,
+    GridToolbarColumnsButton,
+    GridToolbarFilterButton,
+    GridToolbarExport,
+    GridToolbarDensitySelector
+} from '@mui/x-data-grid'
+import NewForm from '../../forms/New/NewForm'
 import UpdateForm from '../../forms/Update/UpdateForm'
+import Spinner from '../Spinner/Spinner'
 import './Table.css'
 
 export default function Table({ list, items, columns }) {
     const [rows, setRows] = useState(items || []);
-    const [open, setOpen] = useState(false);
+    const [editFormOpen, setEditFormOpen] = useState(false);
+    const [newFormOpen, setNewFormOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteDisabled, setDeleteDisabled] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [selectionModel, setSelectionModel] = useState([]);
 
+    // TODO: Paginate calls (only retieve first 25 items)
     useEffect(() => {
         if (list) {
             (async () => {
@@ -34,6 +48,72 @@ export default function Table({ list, items, columns }) {
         return () => { };
     }, [list]);
 
+    useEffect(() => {
+        if (selectionModel.length) {
+            setDeleteDisabled(false);
+        } else {
+            setDeleteDisabled(true);
+        }
+    }, [selectionModel]);
+
+    function newItem() {
+        setNewFormOpen(true);
+    }
+
+    async function deleteItems() {
+        setIsDeleting(true);
+
+        await Promise.all(
+            selectionModel.map(id => {
+                return sp.web.lists
+                    .getByTitle(list)
+                    .items
+                    .getById(id)
+                    .recycle();
+            })
+        );
+
+        const remainingRows = rows.filter(({ id }) => !selectionModel.includes(id));
+
+        setRows(remainingRows);
+        setSelectionModel([]);
+        setIsDeleting(false);
+    }
+
+    function CustomToolbar() {
+        return (
+            <GridToolbarContainer>
+                <div className='add-btn-ctr mr-1'>
+                    <button
+                        className='btn btn-primary'
+                        onClick={newItem}
+                    >
+                        <i className='bi bi-plus-circle-fill mr-1'></i>
+                        Add item
+                    </button>
+                </div>
+                <div className='delete-btn-ctr mr-1'>
+                    <button
+                        className='btn btn-primary'
+                        onClick={deleteItems}
+                        disabled={deleteDisabled}
+                    >
+                        {
+                            isDeleting ?
+                                <Spinner />:
+                                <i className='bi bi-trash'></i>
+                        }
+                    </button>
+                </div>
+                <GridToolbarColumnsButton />
+                <GridToolbarFilterButton />
+                <GridToolbarDensitySelector />
+                <GridToolbarExport />
+            </GridToolbarContainer>
+        );
+    }
+
+    // TODO: Make new call on page change
     return (
         <div className='rhcc-table' style={{ width: '100%' }}>
             <DataGrid
@@ -42,25 +122,38 @@ export default function Table({ list, items, columns }) {
                 autoHeight={true}
                 rows={rows}
                 columns={columns}
-                pageSize={10}
-                components={{ Toolbar: GridToolbar }}
-                exportButton={true}
-                rowsPerPageOptions={[50]}
+                pageSize={25}
+                rowsPerPageOptions={[25, 50, 100]}
+                components={{ Toolbar: CustomToolbar }}
                 checkboxSelection={true}
                 disableSelectionOnClick={true}
+                onSelectionModelChange={(newSelectionModel => {
+                    setSelectionModel(newSelectionModel);
+                })}
                 onRowClick={(params, event) => {
                     setSelectedItem(params.row);
-                    setOpen(true);
+                    setEditFormOpen(true);
                 }}
             />
             {
-                selectedItem && 
+                selectedItem &&
                 <UpdateForm
                     list={list}
                     item={selectedItem}
                     columns={columns}
-                    open={open}
-                    setOpen={setOpen}
+                    open={editFormOpen}
+                    setOpen={setEditFormOpen}
+                    rows={rows}
+                    setRows={setRows}
+                />
+            }
+            {
+                newFormOpen &&
+                <NewForm
+                    list={list}
+                    columns={columns}
+                    open={newFormOpen}
+                    setOpen={setNewFormOpen}
                     rows={rows}
                     setRows={setRows}
                 />
