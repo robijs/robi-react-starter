@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { sp } from '@pnp/sp'
 import '@pnp/sp/webs'
 import '@pnp/sp/lists'
@@ -11,8 +11,19 @@ import { Input, InputLabel, FormControl, FormHelperText } from '@mui/material'
 import './UpdateForm.css'
 
 function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, unregister, reset } = useForm();
     const { confirm } = window;
+
+    // Reset form when item changes
+    useEffect(() => {
+        columns
+            .filter(({ field }) => field.toLowerCase() !== 'id')
+            .forEach(({ field }) => {
+                unregister(field);
+            });
+
+        reset();
+    }, [reset, unregister, item, columns])
 
     function onClose() {
         setOpen(false);
@@ -77,12 +88,14 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
                         columns
                             .filter(({ field }) => field.toLowerCase() !== 'id')
                             .map(({ field, headerName, description }) => {
+                                console.log(item[field]);
+
                                 return (
                                     <FormControl key={field} variant="standard" fullWidth>
                                         <InputLabel htmlFor={`field-${field}`}>{headerName}</InputLabel>
                                         <Input 
                                             id={`field-${field}`}
-                                            defaultValue={item[field] || ""}
+                                            value={item[field] || ""}
                                             aria-describedby={`${field}-helper-text`}
                                             {...register(field)}
                                         />

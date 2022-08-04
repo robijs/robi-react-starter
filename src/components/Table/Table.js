@@ -12,8 +12,7 @@ import './Table.css'
 export default function Table({ list, items, columns }) {
     const [rows, setRows] = useState(items || []);
     const [open, setOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState({});
-
+    const [selectedItem, setSelectedItem] = useState(null);
 
     useEffect(() => {
         if (list) {
@@ -50,11 +49,12 @@ export default function Table({ list, items, columns }) {
                 checkboxSelection={true}
                 disableSelectionOnClick={true}
                 onRowClick={(params, event) => {
-                    setOpen(true);
                     setSelectedItem(params.row);
+                    setOpen(true);
                 }}
             />
-            <div>
+            {
+                selectedItem && 
                 <UpdateForm
                     list={list}
                     item={selectedItem}
@@ -64,8 +64,7 @@ export default function Table({ list, items, columns }) {
                     rows={rows}
                     setRows={setRows}
                 />
-            </div>
-            <div></div>
+            }
         </div>
     );
 }
