@@ -7,7 +7,7 @@ import List from './pages/List'
 import Contacts from './lists/Contacts/Schema'
 
 const app = {
-    name: 'App',
+    name: 'Robi',
     localhost: 'http://localhost',
     localport: '3000',
     proxyport: '8081'
@@ -48,8 +48,23 @@ const routes = [
     },
 ];
 
+const dev = {
+    user: {
+        Title: 'First Last',
+        Email: 'first.mi.last.ctr@mail.mil',
+        LoginName: '0987654321@mil',
+        Roles: {
+            results: [
+                'Developer'
+            ]
+        },
+        SiteId: 1
+    }
+};
+
 export {
     app,
     routes,
-    lists
+    lists,
+    dev
 }

@@ -1,1 +1,84 @@
-{"Actions":[],"Searches":[],"Comments":[],"Errors":[],"Feedback":[],"Log":[],"Users":[],"Questions":[],"ReleaseNotes":[],"Roles":[{"Id":1,"Title":"Administrator"},{"Id":2,"Title":"Developer"},{"Id":3,"Title":"User"}],"Settings":[{"Id":1,"Key":"QuestionTypes","Value":"[{\"title\":\"General\",\"path\":\"General\"}]"},{"Id":2,"Key":"Build","Value":"1.0.0"},{"Id":3,"Key":"Version","Value":"1.0.0"}],"Contacts":[]}
+{
+  "Actions": [],
+  "Searches": [],
+  "Comments": [],
+  "Errors": [],
+  "Feedback": [],
+  "Log": [],
+  "Users": [],
+  "Questions": [],
+  "ReleaseNotes": [],
+  "Roles": [
+    {
+      "Id": 1,
+      "Title": "Administrator"
+    },
+    {
+      "Id": 2,
+      "Title": "Developer"
+    },
+    {
+      "Id": 3,
+      "Title": "User"
+    }
+  ],
+  "Settings": [
+    {
+      "Id": 1,
+      "Key": "QuestionTypes",
+      "Value": "[{\"title\":\"General\",\"path\":\"General\"}]"
+    },
+    {
+      "Id": 2,
+      "Key": "Build",
+      "Value": "1.0.0"
+    },
+    {
+      "Id": 3,
+      "Key": "Version",
+      "Value": "1.0.0"
+    }
+  ],
+  "Contacts": [
+    {
+      "id": 1,
+      "firstName": "Doe",
+      "lastName": "Jane",
+      "email": "jane.doe@example.org",
+      "age": 30,
+      "AuthorId": 1,
+      "Author": {
+        "Title": "First Last",
+        "LoginName": "0987654321@mil"
+      },
+      "EditorId": 1,
+      "Editor": {
+        "Title": "First Last",
+        "LoginName": "0987654321@mil"
+      },
+      "Created": "Wed, 03 Aug 2022 22:27:03 GMT",
+      "Modified": "Wed, 03 Aug 2022 22:27:03 GMT",
+      "Id": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Smith",
+      "lastName": "George",
+      "email": "george.smith@example.org",
+      "age": 45,
+      "AuthorId": 1,
+      "Author": {
+        "Title": "First Last",
+        "LoginName": "0987654321@mil"
+      },
+      "EditorId": 1,
+      "Editor": {
+        "Title": "First Last",
+        "LoginName": "0987654321@mil"
+      },
+      "Created": "Wed, 03 Aug 2022 22:27:03 GMT",
+      "Modified": "Wed, 03 Aug 2022 22:27:03 GMT",
+      "Id": 2
+    }
+  ]
+}
