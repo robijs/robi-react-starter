@@ -7,11 +7,12 @@ import '@pnp/sp/files'
 import '@pnp/sp/items'
 import '@pnp/sp/lists'
 import '@pnp/sp/fields'
-import './App.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 import AppContainer from './components/AppContainer/AppContainer'
 import MainContainer from './components/MainContainer/MainContainer'
 import Sidebar from './components/Sidebar/Sidebar'
 import { app, lists, routes } from './config'
+import './App.css'
 
 export default function App() {
     const { pathname } = useLocation();
@@ -42,11 +43,22 @@ export default function App() {
         },
     });
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#6A5ACD',
+                light: '#6A5ACD'
+            },
+        }
+    });
+
     return (
         loaded &&
-        <AppContainer>
-            <Sidebar appname={name} pathname={pathname} />
-            <MainContainer title={title} lists={lists} />
-        </AppContainer>
+        <ThemeProvider theme={theme}>
+             <AppContainer>
+                <Sidebar appname={name} pathname={pathname} />
+                <MainContainer title={title} lists={lists} />
+            </AppContainer>
+        </ThemeProvider>
     );
 }

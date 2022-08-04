@@ -13,12 +13,13 @@ import {
     GridToolbarExport,
     GridToolbarDensitySelector
 } from '@mui/x-data-grid'
+import ToggleBar from '../ToggleBar/ToggleBar'
 import NewForm from '../../forms/New/NewForm'
 import UpdateForm from '../../forms/Update/UpdateForm'
 import Spinner from '../Spinner/Spinner'
 import './Table.css'
 
-export default function Table({ list, items, columns }) {
+export default function Table({ list, items, columns, toggle }) {
     const [rows, setRows] = useState(items || []);
     const [editFormOpen, setEditFormOpen] = useState(false);
     const [newFormOpen, setNewFormOpen] = useState(false);
@@ -116,6 +117,10 @@ export default function Table({ list, items, columns }) {
     // TODO: Make new call on page change
     return (
         <div className='rhcc-table' style={{ width: '100%' }}>
+            <div className='flex align-center justify-between mb-2'>
+                <h3 className='table-title m-0'>{list}</h3>
+               <ToggleBar options={toggle} />
+            </div>
             <DataGrid
                 sx={{ fontSize: '13px' }}
                 density='compact'

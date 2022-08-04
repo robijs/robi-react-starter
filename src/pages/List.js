@@ -11,6 +11,20 @@ export default function List() {
             <Table
                 columns={columns}
                 list="Contacts"
+                toggle={[ 
+                    {
+                        label: 'All',
+                        filter() {}
+                    },
+                    {
+                        label: 'Under 30',
+                        filter() {}
+                    },
+                    {
+                        label: '30+',
+                        filter() {}
+                    }
+                ]}
             />
         </div>
     );

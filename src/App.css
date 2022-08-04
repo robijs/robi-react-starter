@@ -106,3 +106,8 @@ body::-webkit-scrollbar {
     background-color: var(--button-background);
     color: var(--primary);
 }
+
+/** Button Groups */
+.MuiButtonGroup-outlined button {
+    border-width: 2px;
+}

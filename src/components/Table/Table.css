@@ -1,3 +1,9 @@
+.table-title {
+    font-size: 22px;
+    margin-top: 0px;
+    font-weight: 700;
+}
+
 .MuiDataGrid-root {
     border: none !important;
     font-family: var(--font-family) !important;
