@@ -7,3 +7,8 @@
 .MuiDialog-root .form-group form .MuiFormControl-root:not(:last-child) {
     margin-bottom: 24px;
 }
+
+.MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {
+    font-family: var(--font-family);
+    letter-spacing: normal;
+}
