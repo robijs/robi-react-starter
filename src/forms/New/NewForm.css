@@ -1,14 +1,22 @@
+.MuiPaper-root .MuiDialogContent-root {
+    padding-bottom: 0px;
+}
+
 .MuiDialog-root .MuiPaper-root {
     padding: 20px;
     border-radius: 20px;
     box-shadow: var(--box-shadow);
 }
 
-.MuiDialog-root .form-group form .MuiFormControl-root:not(:last-child) {
+.MuiDialog-root form .MuiInputBase-root {
+    border-radius: 10px;
+    background-color: var(--background);
+}
+
+.MuiDialog-root form .MuiFormControl-root:not(:last-child) {
     margin-bottom: 24px;
 }
 
 .MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {
-    font-family: var(--font-family);
     letter-spacing: normal;
 }

@@ -95,7 +95,7 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
                                         <InputLabel htmlFor={`field-${field}`}>{headerName}</InputLabel>
                                         <Input 
                                             id={`field-${field}`}
-                                            value={item[field] || ""}
+                                            defaultValue={item[field] || ""}
                                             aria-describedby={`${field}-helper-text`}
                                             {...register(field)}
                                         />

@@ -7,7 +7,7 @@ import '@pnp/sp/site-users/web'
 import '@pnp/sp/items'
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { Input, InputLabel, FormControl, FormHelperText } from '@mui/material'
+import { FilledInput, InputLabel, FormControl, FormHelperText } from '@mui/material'
 import './NewForm.css'
 
 function NewForm({ open, setOpen, setRows, rows, columns, list }) {
@@ -61,10 +61,11 @@ function NewForm({ open, setOpen, setRows, rows, columns, list }) {
                             .map(({ field, headerName, description }) => {
                                 return (
                                     <FormControl key={field} variant="standard" fullWidth>
-                                        <InputLabel htmlFor={`field-${field}`}>{headerName}</InputLabel>
-                                        <Input 
+                                        <InputLabel variant="filled" htmlFor={`field-${field}`}>{headerName}</InputLabel>
+                                        <FilledInput
                                             id={`field-${field}`}
                                             // value={""}
+                                            disableUnderline={true}
                                             aria-describedby={`${field}-helper-text`}
                                             {...register(field)}
                                         />

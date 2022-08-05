@@ -59,6 +59,20 @@ export default function App() {
                     disableRipple: true, // No more ripple, on the whole application!
                 },
             },
+        },
+        typography: {
+            fontFamily: [
+                '-apple-system',
+                'BlinkMacSystemFont',
+                '"Segoe UI"',
+                'Roboto',
+                '"Helvetica Neue"',
+                'Arial',
+                'sans-serif',
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+                '"Segoe UI Symbol"',
+            ].join(',')
         }
     });
 

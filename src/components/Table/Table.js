@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { sp } from '@pnp/sp'
 import '@pnp/sp/webs'
 import '@pnp/sp/lists'
@@ -20,6 +20,7 @@ import NewForm from '../../forms/New/NewForm'
 import UpdateForm from '../../forms/Update/UpdateForm'
 import Spinner from '../Spinner/Spinner'
 import './Table.css'
+import useInterval from '../../hooks/useInterval'
 
 export default function Table({ list, items, columns, toggle }) {
     const [rows, setRows] = useState(items || []);
@@ -29,27 +30,40 @@ export default function Table({ list, items, columns, toggle }) {
     const [deleteDisabled, setDeleteDisabled] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectionModel, setSelectionModel] = useState([]);
+    const [isRunning, setIsRunning] = useState(null);
+
+    // DEV: Poll list
+    // TODO: How would polling work with pagination?
+    useInterval(() => {
+        console.log('polling...');
+        memoizedGetItems();
+    }, isRunning ? 1000 : null);
+
+    const memoizedGetItems = useCallback(
+        async () => {
+            const items = await sp.web.lists.getByTitle(list).items.getAll();
+            const data = items.map((item) => {
+                item.id = item.Id;
+    
+                return item;
+            });
+    
+            console.log(data);
+    
+            setRows(data);
+        },
+        [list]
+    )
 
     // TODO: Paginate calls (only retieve first 25 items)
     useEffect(() => {
         if (list) {
-            (async () => {
-                const items = await sp.web.lists.getByTitle(list).items.getAll();
-                const data = items.map((item) => {
-                    item.id = item.Id;
-
-                    return item;
-                });
-
-                console.log(data);
-
-                setRows(data);
-            })();
+            memoizedGetItems();
         }
 
         // Cleanup
         return () => { };
-    }, [list]);
+    }, [memoizedGetItems, list]);
 
     useEffect(() => {
         if (selectionModel.length) {
@@ -120,6 +134,20 @@ export default function Table({ list, items, columns, toggle }) {
     return (
         rows.length ?
             <div className='rhcc-table' style={{ width: '100%' }}>
+                {/* DEV: Remove btn after testing poll */}
+
+                {/* Toggle poll */}
+                <button
+                    className='btn btn-primary'
+                    style={{ marginTop: '8px', width: '100%' }}
+                    onClick={() => {
+                        setIsRunning(prevValue => !prevValue)
+                    }}
+                >
+                    Toggle poll
+                </button>
+
+                {/*  */}
                 <div className='flex align-center justify-between mb-2'>
                     <h3 className='table-title m-0'>{list}</h3>
                     <ToggleBar options={toggle} />

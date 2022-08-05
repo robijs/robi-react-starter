@@ -12,7 +12,6 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
         textTransform: 'unset',
         color: 'var(--primary)',
         fontWeight: 500,
-        fontFamily: 'var(--font-family)',
         letterSpacing: 'normal',
         whiteSpace: 'nowrap',
         padding: '6px 12px',

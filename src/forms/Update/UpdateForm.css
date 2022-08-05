@@ -9,6 +9,5 @@
 }
 
 .MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {
-    font-family: var(--font-family);
     letter-spacing: normal;
 }

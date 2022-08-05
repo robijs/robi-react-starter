@@ -6,7 +6,6 @@
 
 .MuiDataGrid-root {
     border: none !important;
-    font-family: var(--font-family) !important;
 }
 
 .MuiButton-textPrimary {
@@ -45,7 +44,6 @@
 }
 
 .rhcc-table .MuiButton-root {
-    font-family: var(--font-family);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: unset;
@@ -120,7 +118,6 @@
 }
 
 .rhcc-table .MuiTablePagination-toolbar * {
-    font-family: var(--font-family) !important;
     font-size: 13px;
     font-weight: 500;
 }
@@ -165,7 +162,6 @@
 .MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters {
     margin: 0px 10px;
     border-radius: 6px;
-    font-family: var(--font-family);
     font-size: 13px;
     font-weight: 500;
 }
@@ -185,7 +181,6 @@
 
 /* Filter menu */
 .MuiDataGrid-panel .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
-    font-family: var(--font-family);
     font-size: 13px;
     font-weight: 500;
 }
@@ -195,11 +190,9 @@
 .MuiDataGrid-panel .MuiNativeSelect-select {
     font-size: 13px;
     letter-spacing: normal;
-    font-family: var(--font-family);
 }
 
 .MuiDataGrid-panel .MuiDataGrid-panelFooter button {
     text-transform: unset;
-    font-family: var(--font-family);
     letter-spacing: unset;
 }
