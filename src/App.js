@@ -16,8 +16,8 @@ import './App.css'
 
 export default function App() {
     const { pathname } = useLocation();
-    const [ title, setTitle ] = useState(routes.find(route => route.path === pathname).title);
-    const [ loaded, setLoaded ] = useState(false);
+    const [title, setTitle] = useState(routes.find(route => route.path === pathname).title);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         document.fonts.load("1em bootstrap-icons").then(() => {
@@ -27,8 +27,8 @@ export default function App() {
 
     useEffect(() => {
         setTitle(routes.find(route => route.path === pathname).title);
-    }, [ pathname ]);
-    
+    }, [pathname]);
+
     const { name, localhost, localport, proxyport } = app;
     const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${name}` : window.location.href.split('/SiteAssets/')[0];
 
@@ -49,13 +49,23 @@ export default function App() {
                 main: '#6A5ACD',
                 light: '#6A5ACD'
             },
+        },
+        components: {
+            // Name of the component
+            MuiButtonBase: {
+                defaultProps: {
+                    // The props to apply
+                    // https://mui.com/material-ui/getting-started/faq/#how-can-i-disable-the-ripple-effect-globally
+                    disableRipple: true, // No more ripple, on the whole application!
+                },
+            },
         }
     });
 
     return (
         loaded &&
         <ThemeProvider theme={theme}>
-             <AppContainer>
+            <AppContainer>
                 <Sidebar appname={name} pathname={pathname} />
                 <MainContainer title={title} lists={lists} />
             </AppContainer>

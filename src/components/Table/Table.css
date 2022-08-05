@@ -31,6 +31,7 @@
 
 /* Toolbar */
 .rhcc-table .MuiDataGrid-toolbarContainer {
+    padding: 0px;
     margin-bottom: 12px;
 }
 
