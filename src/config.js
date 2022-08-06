@@ -8,6 +8,7 @@ import Contacts from './lists/Contacts/Schema'
 
 const app = {
     name: 'Robi',
+    title: 'App',
     localhost: 'http://localhost',
     localport: '3000',
     proxyport: '8081'
@@ -47,6 +48,8 @@ const routes = [
         nav: false
     },
 ];
+
+console.log(JSON.stringify(routes));
 
 const dev = {
     user: {

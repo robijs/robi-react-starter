@@ -8,15 +8,15 @@ import '@pnp/sp/items'
 import '@pnp/sp/lists'
 import '@pnp/sp/fields'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import AppContainer from './components/AppContainer/AppContainer'
-import MainContainer from './components/MainContainer/MainContainer'
-import Sidebar from './components/Sidebar/Sidebar'
+import AppContainer from './components/AppContainer'
+import MainContainer from './components/MainContainer'
+import Sidebar from './components/Sidebar'
 import { app, lists, routes } from './config'
 import './App.css'
 
 export default function App() {
     const { pathname } = useLocation();
-    const [title, setTitle] = useState(routes.find(route => route.path === pathname).title);
+    const [pagetitle, setPageTitle] = useState(routes.find(route => route.path === pathname).title);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -26,10 +26,10 @@ export default function App() {
     });
 
     useEffect(() => {
-        setTitle(routes.find(route => route.path === pathname).title);
+        setPageTitle(routes.find(route => route.path === pathname).title);
     }, [pathname]);
 
-    const { name, localhost, localport, proxyport } = app;
+    const { name, title, localhost, localport, proxyport } = app;
     const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${name}` : window.location.href.split('/SiteAssets/')[0];
 
     Web(baseUrl);
@@ -80,8 +80,8 @@ export default function App() {
         loaded &&
         <ThemeProvider theme={theme}>
             <AppContainer>
-                <Sidebar appname={name} pathname={pathname} />
-                <MainContainer title={title} lists={lists} />
+                <Sidebar appname={title || name} pathname={pathname} />
+                <MainContainer title={pagetitle} lists={lists} />
             </AppContainer>
         </ThemeProvider>
     );

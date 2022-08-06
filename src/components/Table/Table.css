@@ -53,7 +53,7 @@
 }
 
 .rhcc-table .MuiButton-root:hover {
-    background-color: var(--button-background);
+    background-color: var(--background);
 }
 
 /* Headers */
@@ -151,9 +151,6 @@
 .MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-filterForm .MuiFormControl-root.MuiDataGrid-filterFormDeleteIcon {
     justify-content: center;
 }
-
-/* .MuiDataGrid-panel .MuiPaper-rounded .MuiDataGrid-panelWrapper {
-} */
 
 .MuiList-root.MuiList-padding.MuiDataGrid-menuList {
     padding: 10px 0px;

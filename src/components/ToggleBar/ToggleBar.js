@@ -25,7 +25,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
             borderRadius: '10px',
         },
         '&:hover': {
-            backgroundColor: 'var(--button-background)'
+            backgroundColor: 'var(--background)'
         }
     }
 }));
