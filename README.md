@@ -3,7 +3,7 @@
 This template repo is an opinionated boilerlate for client-side SharePoint apps used by RHC-C.
 
 ## Features
-* Default theme for consistent, familiar look-and-feel
+* Default theme for a consistent, familiar look-and-feel
 * Built-in SPA Routing
 * Simple init process via config.js
 * Support for [PnPjs](https://pnp.github.io/pnpjs/getting-started/)
