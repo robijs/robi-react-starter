@@ -3,8 +3,11 @@
 This template repo is an opinionated boilerlate for client-side SharePoint apps used by RHC-C.
 
 :white_check_mark: Default theme for consistent, familiar look-and-feel
+
 :white_check_mark: Built-in SPA Routing
+
 :white_check_mark: Simple init process via config.js
+
 :white_check_mark: Support for [PnPjs](https://pnp.github.io/pnpjs/getting-started/)
 
 ### `npm start`
