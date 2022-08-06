@@ -1,12 +1,9 @@
-
-
 /* Buttons */
 .btn {
     cursor: pointer;
     font-family: var(--font-family);
     font-size: 14px;
     padding: 6px 12px;
-    font-weight: 500;
     border-radius: 10px;
     border: none;
     outline: none;
@@ -38,6 +35,13 @@
 .btn-primary {
     background-color: var(--button-background);
     color: var(--primary);
+    font-weight: 500;
+}
+
+.btn-primary-reverse {
+    background-color: var(--primary);
+    color: var(--button-background);
+    font-weight: 500;
 }
 
 /** Button Groups */

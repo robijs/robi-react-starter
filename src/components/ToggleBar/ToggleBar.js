@@ -30,7 +30,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     }
 }));
 
-export default function ToggleBar({ options }) {
+export default function ToggleBar({ rows, setRows, options }) {
     const [value, setValue] = useState(options[0].label);
 
     function handleValue(event, newValue) {
@@ -58,7 +58,14 @@ export default function ToggleBar({ options }) {
                     {
                         options && options.map(({ label, filter }) => {
                             return (
-                                <ToggleButton key={label} value={label} aria-label={label}>
+                                <ToggleButton
+                                    key={label}
+                                    value={label}
+                                    aria-label={label}
+                                    onClick={() => {
+                                        filter(rows, setRows);
+                                    }}
+                                >
                                     {label}
                                 </ToggleButton>
                             )

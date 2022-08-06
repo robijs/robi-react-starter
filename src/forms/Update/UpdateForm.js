@@ -7,7 +7,7 @@ import '@pnp/sp/site-users/web'
 import '@pnp/sp/items'
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { Input, InputLabel, FormControl, FormHelperText } from '@mui/material'
+import { FilledInput, InputLabel, FormControl, FormHelperText } from '@mui/material'
 import './UpdateForm.css'
 
 function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
@@ -92,11 +92,12 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
 
                                 return (
                                     <FormControl key={field} variant="standard" fullWidth>
-                                        <InputLabel htmlFor={`field-${field}`}>{headerName}</InputLabel>
-                                        <Input 
+                                        <InputLabel variant="filled" htmlFor={`field-${field}`}>{headerName}</InputLabel>
+                                        <FilledInput
                                             id={`field-${field}`}
                                             defaultValue={item[field] || ""}
                                             aria-describedby={`${field}-helper-text`}
+                                            disableUnderline={true}
                                             {...register(field)}
                                         />
                                         {

@@ -20,9 +20,12 @@ import NewForm from '../../forms/New/NewForm'
 import UpdateForm from '../../forms/Update/UpdateForm'
 import Spinner from '../Spinner/Spinner'
 import './Table.css'
-import useInterval from '../../hooks/useInterval'
+// DEV: Polling OFF
+// import useInterval from '../../hooks/useInterval'
+// import classNames from 'classnames'
 
 export default function Table({ list, items, columns, toggle }) {
+    const [allRows, setAllRows] = useState([]);
     const [rows, setRows] = useState(items || []);
     const [editFormOpen, setEditFormOpen] = useState(false);
     const [newFormOpen, setNewFormOpen] = useState(false);
@@ -30,14 +33,19 @@ export default function Table({ list, items, columns, toggle }) {
     const [deleteDisabled, setDeleteDisabled] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectionModel, setSelectionModel] = useState([]);
-    const [isRunning, setIsRunning] = useState(null);
+    // const [isRunning, setIsRunning] = useState(null);
 
     // DEV: Poll list
-    // TODO: How would polling work with pagination?
-    useInterval(() => {
-        console.log('polling...');
-        memoizedGetItems();
-    }, isRunning ? 1000 : null);
+    /*
+        FIXME: 
+        Not smart. Just refetches all items. Could be slow. 
+        Works fine for small lists. How would polling work with paginated REST calls?
+        TODO: Move to worker.
+    */ 
+    // useInterval(() => {
+    //     console.log('polling...');
+    //     memoizedGetItems();
+    // }, isRunning ? 5000 : null);
 
     const memoizedGetItems = useCallback(
         async () => {
@@ -49,7 +57,8 @@ export default function Table({ list, items, columns, toggle }) {
             });
     
             console.log(data);
-    
+
+            setAllRows(data);
             setRows(data);
         },
         [list]
@@ -122,6 +131,17 @@ export default function Table({ list, items, columns, toggle }) {
                         }
                     </button>
                 </div>
+                <div className='refresh-btn-ctr mr-1'>
+                    <button
+                        className='btn btn-primary'
+                        onClick={async () => {
+                            await memoizedGetItems();
+                            console.log('done')
+                        }}
+                    >
+                        <i className='bi bi-arrow-clockwise'></i>
+                    </button>
+                </div>
                 <GridToolbarColumnsButton />
                 <GridToolbarFilterButton />
                 <GridToolbarDensitySelector />
@@ -136,21 +156,20 @@ export default function Table({ list, items, columns, toggle }) {
             <div className='rhcc-table' style={{ width: '100%' }}>
                 {/* DEV: Remove btn after testing poll */}
 
-                {/* Toggle poll */}
-                <button
-                    className='btn btn-primary'
+                {/* <button
+                    className={classNames('btn', { 'btn-primary-reverse': isRunning, 'btn-primary': !isRunning })}
                     style={{ marginTop: '8px', width: '100%' }}
                     onClick={() => {
                         setIsRunning(prevValue => !prevValue)
                     }}
                 >
-                    Toggle poll
-                </button>
+                    {isRunning ? 'Poll On' : 'Poll Off'}
+                </button> */}
 
                 {/*  */}
                 <div className='flex align-center justify-between mb-2'>
                     <h3 className='table-title m-0'>{list}</h3>
-                    <ToggleBar options={toggle} />
+                    <ToggleBar rows={allRows} setRows={setRows} options={toggle} />
                 </div>
                 <DataGrid
                     sx={{ fontSize: '13px' }}
@@ -195,6 +214,7 @@ export default function Table({ list, items, columns, toggle }) {
                     />
                 }
                 {/* DEV: Remove button after testing */}
+
                 {/* <button
                     className='btn btn-primary'
                     style={{ marginTop: '8px', width: '100%' }}
@@ -204,6 +224,8 @@ export default function Table({ list, items, columns, toggle }) {
                 >
                     Toggle skeleton
                 </button> */}
+
+                {/*  */}
             </div> :
             <Stack spacing={1}>
                 <Skeleton variant="rectangular" height={"42.75px"} width={"100%"} sx={{ marginBottom: '16px', borderRadius: '10px', backgroundColor: 'var(--background-HSL-3)' }} />
@@ -211,6 +233,17 @@ export default function Table({ list, items, columns, toggle }) {
                     <Skeleton
                         variant="rectangular"
                         width={"110.09px"}
+                        height={33}
+                        sx={{ 
+                            marginTop: '0px !important',
+                            borderRadius: '10px',
+                            backgroundColor: 'var(--background-HSL-3)',
+                            marginRight: '8px'
+                        }}
+                    />
+                    <Skeleton
+                        variant="rectangular"
+                        width={43}
                         height={33}
                         sx={{ 
                             marginTop: '0px !important',
@@ -239,6 +272,7 @@ export default function Table({ list, items, columns, toggle }) {
                 </div>
                 <Skeleton variant="rectangular" width={"100%"} height={127} sx={{ marginTop: '0px !important', borderRadius: '10px', backgroundColor: 'var(--background-HSL-3)' }} />
                 {/* DEV: Remove btn after testing */}
+
                 {/* <button
                     className='btn btn-primary'
                     onClick={() => {
@@ -247,6 +281,8 @@ export default function Table({ list, items, columns, toggle }) {
                 >
                     Toggle skeleton
                 </button> */}
+
+                {/*  */}
             </Stack>
     );
 }

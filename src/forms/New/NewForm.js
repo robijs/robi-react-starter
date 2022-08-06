@@ -64,9 +64,8 @@ function NewForm({ open, setOpen, setRows, rows, columns, list }) {
                                         <InputLabel variant="filled" htmlFor={`field-${field}`}>{headerName}</InputLabel>
                                         <FilledInput
                                             id={`field-${field}`}
-                                            // value={""}
-                                            disableUnderline={true}
                                             aria-describedby={`${field}-helper-text`}
+                                            disableUnderline={true}
                                             {...register(field)}
                                         />
                                         {

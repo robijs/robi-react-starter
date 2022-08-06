@@ -14,15 +14,28 @@ export default function List() {
                 toggle={[ 
                     {
                         label: 'All',
-                        filter() {}
+                        filter(rows, setRows) {
+                            console.log(rows);
+                            setRows(rows)
+                        }
                     },
                     {
                         label: 'Under 30',
-                        filter() {}
+                        filter(rows, setRows) {
+                            setRows(
+                                rows
+                                    .filter(row => row.age < 30)
+                            )
+                        }
                     },
                     {
                         label: '30+',
-                        filter() {}
+                        filter(rows, setRows) {
+                            setRows(
+                                rows
+                                    .filter(row => row.age >= 30)
+                            )
+                        }
                     }
                 ]}
             />

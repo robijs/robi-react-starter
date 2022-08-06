@@ -30,6 +30,7 @@
 
 *, ::after, ::before {
     box-sizing: border-box;
+    letter-spacing: normal;
 }
 
 html {
@@ -74,6 +75,44 @@ code {
         monospace;
 }
 
+/* Forms */
+.MuiDialog-root .MuiPaper-root {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.MuiDialog-root .form-group form .MuiFormControl-root:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {
+    letter-spacing: normal;
+}
+
+.MuiPaper-root .MuiDialogContent-root {
+    padding-bottom: 0px;
+}
+
+.MuiDialog-root .MuiPaper-root {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.MuiDialog-root form .MuiInputBase-root.MuiFilledInput-root {
+    border-radius: 10px;
+    background-color: var(--background);
+}
+
+.MuiDialog-root form .MuiFormControl-root:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {
+    letter-spacing: normal;
+}
+
 /* Utility classes */
 
 /** Margin */
@@ -93,8 +132,14 @@ code {
     margin-bottom: 24px;
 }
 
+/*** Left */
 .mr-1 {
     margin-right: 8px;
+}
+
+/** Right */
+.ml-1 {
+    margin-left: 8px;
 }
 
 /** Display */
