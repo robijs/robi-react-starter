@@ -1,17 +1,11 @@
 # Open
-[ ] Pages
-    [ ] Home
-    [ ] SITREP
-    [ ] Lists
-        [ ] Active COP Tracker
-        [ ] Completed COP Tracker
-    [ ] Reports
-        [ ] CG COP
-    <!-- Rethink forms (e.g., Robi's 'Add item' button in table toolbar, no need to have a separte form view) -->
-    [ ] Forms
-        [ ] Submission Forms
-            [ ] New Tasker (should be modal?)
-[ ] Sidebar (one for each page)
+<!-- Rethink forms (e.g., Robi's 'Add item' button in table toolbar, no need to have a separte form view) -->
+[ ] Default Forms
+    [ ] Modal
+    [ ] Full page
+    [ ] New
+    [ ] Edit
+[ ] Sidebar
 [ ] Themes (similar to Robi)
 [ ] Complete table UI/UX
     [ ] Add row
@@ -22,4 +16,3 @@
 # Done
 
 # Bugs
-[ ] Fix CG COP bug (show if > selected month)
