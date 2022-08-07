@@ -11,6 +11,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import AppContainer from './components/AppContainer'
 import MainContainer from './components/MainContainer'
 import Sidebar from './components/Sidebar'
+import CommandPalette from './components/ComandPalette/CommandPalette'
 import { app, lists, routes } from './config'
 import './App.css'
 
@@ -18,6 +19,7 @@ export default function App() {
     const { pathname } = useLocation();
     const [pagetitle, setPageTitle] = useState(routes.find(route => route.path === pathname).title);
     const [loaded, setLoaded] = useState(false);
+    const [isDimmed, setIsDimmed] = useState(false);
 
     useEffect(() => {
         document.fonts.load("1em bootstrap-icons").then(() => {
@@ -51,14 +53,11 @@ export default function App() {
             },
         },
         components: {
-            // Name of the component
             MuiButtonBase: {
                 defaultProps: {
-                    // The props to apply
-                    // https://mui.com/material-ui/getting-started/faq/#how-can-i-disable-the-ripple-effect-globally
-                    disableRipple: true, // No more ripple, on the whole application!
+                    disableRipple: true,
                 },
-            },
+            }
         },
         typography: {
             fontFamily: [
@@ -79,10 +78,11 @@ export default function App() {
     return (
         loaded &&
         <ThemeProvider theme={theme}>
-            <AppContainer>
+            <AppContainer isDimmed={isDimmed}>
                 <Sidebar appname={title || name} pathname={pathname} />
                 <MainContainer title={pagetitle} lists={lists} />
             </AppContainer>
+            <CommandPalette setIsDimmed={setIsDimmed} />
         </ThemeProvider>
     );
 }

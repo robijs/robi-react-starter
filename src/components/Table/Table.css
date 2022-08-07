@@ -159,7 +159,7 @@
 .MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters {
     margin: 0px 10px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -177,10 +177,23 @@
 }
 
 /* Filter menu */
+/* .MuiDataGrid-panel .MuiInput-underline,
+.MuiDataGrid-panel .MuiInput-underline::after,
+.MuiDataGrid-panel .MuiInput-underline::before {
+    border-bottom: none !important;
+} */
+
 .MuiDataGrid-panel .MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
 }
+
+/* .MuiDataGrid-panel .MuiFormLabel-root {
+    background-color: var(--background);
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 10px;
+} */
 
 .MuiDataGrid-panel .MuiFormLabel-root,
 .MuiDataGrid-panel .MuiInputBase-root input.MuiInputBase-input.MuiInput-input,
@@ -192,4 +205,20 @@
 .MuiDataGrid-panel .MuiDataGrid-panelFooter button {
     text-transform: unset;
     letter-spacing: unset;
+}
+
+/* Rows per page */
+.MuiTablePagination-root .MuiInputBase-root:hover {
+    border-radius: 10px;
+    background-color: var(--background);
+}
+
+.MuiTablePagination-root .MuiSelect-select:focus {
+    background-color: inherit;
+    border-radius: 10px;
+}
+
+.MuiPopover-root .MuiPaper-root.MuiPopover-paper {
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
 }

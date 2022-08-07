@@ -25,6 +25,7 @@ import './Table.css'
 // import classNames from 'classnames'
 
 export default function Table({ list, items, columns, toggle }) {
+    const [pageSize, setPageSize] = useState(10);
     const [allRows, setAllRows] = useState([]);
     const [rows, setRows] = useState(items || []);
     const [editFormOpen, setEditFormOpen] = useState(false);
@@ -177,11 +178,15 @@ export default function Table({ list, items, columns, toggle }) {
                     autoHeight={true}
                     rows={rows}
                     columns={columns}
-                    pageSize={25}
-                    rowsPerPageOptions={[25, 50, 100]}
-                    components={{ Toolbar: CustomToolbar }}
+                    pageSize={pageSize}
+                    rowsPerPageOptions={[10, 25, 100]}
+                    pagination
+                    components={{
+                        Toolbar: CustomToolbar,
+                    }}
                     checkboxSelection={true}
                     disableSelectionOnClick={true}
+                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     onSelectionModelChange={(newSelectionModel => {
                         setSelectionModel(newSelectionModel);
                     })}

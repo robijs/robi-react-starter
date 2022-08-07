@@ -9,6 +9,8 @@
     --box-shadow: rgb(0 0 0 / 10%) 0px 0px 16px -2px;
     --button-background: #e9ecef;
     --color: #24292f;
+    --color-deep: #101010;
+    --color-shallow: #484848;
     --input-background: #fff;
     --input-border-color: #adb5bd;
     --primary: #6A5ACD;
@@ -16,7 +18,7 @@
     --primary-hsl: hsl(248,53.5%,57.8%);
     --primary-hsl-5: hsl(248,53.5%,52%);
     --primary-hsl-10: hsl(248,53.5%,47%);
-    ----primary-rgb: 106,90,205;
+    --primary-rgb: 106,90,205;
     --primary-6b: #6A5ACD6b;
     --primary-19: #6A5ACD19;
     --primary-20: #6A5ACD20;
@@ -106,7 +108,7 @@ code {
 }
 
 .MuiDialog-root form .MuiFormControl-root:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 }
 
 .MuiDialog-root .MuiTypography-root.MuiDialogTitle-root {

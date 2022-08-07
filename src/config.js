@@ -49,8 +49,6 @@ const routes = [
     },
 ];
 
-console.log(JSON.stringify(routes));
-
 const dev = {
     user: {
         Title: 'First Last',

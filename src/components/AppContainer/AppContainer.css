@@ -7,3 +7,7 @@
 .appcontainer {
     transition: background-color 300ms;
 }
+
+.appcontainer.dim {
+    filter: brightness(0.5);
+}
