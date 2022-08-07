@@ -1,12 +1,14 @@
-# RHC-C React Starter
+# Robi React Starter
 
-This template repo is an opinionated boilerlate for client-side SharePoint apps used by RHC-C.
+An opinionated boilerlate for client-side SharePoint apps (server 2013/2016/2019 and Online).
 
 ## Features
-* Themes
-* SPA routes
-* Customization via config.js
 * Support for [PnPjs](https://pnp.github.io/pnpjs/getting-started/)
+* Develop locally against live data with [SP Rest Proxy](https://github.com/koltyakov/sp-rest-proxy)
+* Develop completely offline with [JSON-Server](https://github.com/typicode/json-server)
+* SPA routes
+* Quickly create routes and lists (see ./src/config.js)
+* Themes
 
 ## Commanmds
 
@@ -51,4 +53,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 ***
 
-**This template is built with [Create React App](https://create-react-app.dev/).**
+**Robi React Starter is built with [Create React App](https://create-react-app.dev/), [MUI](https://mui.com/), and many other FOSS.**
