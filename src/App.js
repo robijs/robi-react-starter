@@ -31,8 +31,8 @@ export default function App() {
         setPageTitle(routes.find(route => route.path === pathname).title);
     }, [pathname]);
 
-    const { name, title, localhost, localport, proxyport } = app;
-    const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${name}` : window.location.href.split('/SiteAssets/')[0];
+    const { name, site, title, localhost, localport, proxyport } = app;
+    const baseUrl = window.location.origin === `${localhost}:${localport}` ? `${localhost}:${proxyport}/sites/${site || name}` : window.location.href.split('/SiteAssets/')[0];
 
     Web(baseUrl);
 

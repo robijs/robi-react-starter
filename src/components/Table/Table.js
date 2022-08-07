@@ -25,6 +25,7 @@ import './Table.css'
 // import classNames from 'classnames'
 
 export default function Table({ list, items, columns, toggle }) {
+    const [isLoaded, setIsLoaded] = useState(false);
     const [pageSize, setPageSize] = useState(10);
     const [allRows, setAllRows] = useState([]);
     const [rows, setRows] = useState(items || []);
@@ -50,19 +51,22 @@ export default function Table({ list, items, columns, toggle }) {
 
     const memoizedGetItems = useCallback(
         async () => {
-            const items = await sp.web.lists.getByTitle(list).items.getAll();
-            const data = items.map((item) => {
-                item.id = item.Id;
-    
-                return item;
-            });
-    
-            console.log(data);
+            if (list && !items?.length) {
+                const items = await sp.web.lists.getByTitle(list).items.getAll();
+                const data = items.map((item) => {
+                    item.id = item.Id;
+        
+                    return item;
+                });
+        
+                console.log(data);
 
-            setAllRows(data);
-            setRows(data);
+                setAllRows(data);
+                setRows(data);
+                setIsLoaded(true);
+            }
         },
-        [list]
+        [list, items]
     )
 
     // TODO: Paginate calls (only retieve first 25 items)
@@ -153,7 +157,7 @@ export default function Table({ list, items, columns, toggle }) {
 
     // TODO: Make new call on page change
     return (
-        rows.length ?
+        isLoaded ?
             <div className='rhcc-table' style={{ width: '100%' }}>
                 {/* DEV: Remove btn after testing poll */}
 

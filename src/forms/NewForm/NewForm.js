@@ -58,7 +58,7 @@ function NewForm({ open, setOpen, setRows, rows, columns, list }) {
                     {
                         columns
                             .filter(({ field }) => field.toLowerCase() !== 'id')
-                            .map(({ field, headerName, description }) => {
+                            .map(({ field, headerName, description }, index) => {
                                 return (
                                     <FormControl key={field} variant="standard" fullWidth>
                                         <InputLabel variant="filled" htmlFor={`field-${field}`}>{headerName}</InputLabel>
@@ -66,6 +66,7 @@ function NewForm({ open, setOpen, setRows, rows, columns, list }) {
                                             id={`field-${field}`}
                                             aria-describedby={`${field}-helper-text`}
                                             disableUnderline={true}
+                                            autoFocus={index === 0 ? true : false}
                                             {...register(field)}
                                         />
                                         {

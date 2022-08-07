@@ -9,6 +9,7 @@ import Contacts from './lists/Contacts/Schema'
 const app = {
     name: 'Robi',
     title: 'App',
+    site: 'robi/create-app',
     localhost: 'http://localhost',
     localport: '3000',
     proxyport: '8081'

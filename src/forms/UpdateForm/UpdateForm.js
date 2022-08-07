@@ -87,7 +87,7 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
                     {
                         columns
                             .filter(({ field }) => field.toLowerCase() !== 'id')
-                            .map(({ field, headerName, description }) => {
+                            .map(({ field, headerName, description }, index) => {
                                 console.log(item[field]);
 
                                 return (
@@ -98,6 +98,7 @@ function UpdateForm({ open, setOpen, setRows, rows, columns, list, item }) {
                                             defaultValue={item[field] || ""}
                                             aria-describedby={`${field}-helper-text`}
                                             disableUnderline={true}
+                                            autoFocus={index === 0 ? true : false}
                                             {...register(field)}
                                         />
                                         {
