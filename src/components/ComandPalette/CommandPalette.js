@@ -12,6 +12,7 @@ export default function CommandPalette({ setIsDimmed }) {
     const [options, setOptions] = useState(cmds);
     const [showCmds, setShowCmds] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedCmd, setSelectedCmd] = useState(null);
     const [query, setQuery] = useState(null);
     const palette = useRef();
     const input = useRef();
@@ -62,14 +63,27 @@ export default function CommandPalette({ setIsDimmed }) {
         }
     }, [showCmds, setIsDimmed]);
 
+    useEffect(() => {
+        console.log('Selected Command:', selectedCmd);
+    }, [selectedCmd]);
+
     function onKeyUp(event) {
-        const value = event.target.value.toLowerCase();
+        const value = event.target.value.toLowerCase().trim();
+        const cmd = cmds.find(cmd => value.includes(cmd.toLowerCase()));
 
         // console.log('key up value:', value);
+        // console.log(cmd);
+
+        setSelectedCmd(cmd);
 
         if (value) {
             setQuery(value);
-            setOptions(cmds.filter(option => option.toLowerCase().includes(value)));
+
+            if (cmd) {
+                setOptions(cmds.filter(option => value.includes(option.toLowerCase()) ));
+            } else {
+                setOptions(cmds.filter(option => option.toLowerCase().includes(value)));
+            }
         } else {
             setQuery(null);
             setOptions(cmds)
@@ -112,13 +126,20 @@ export default function CommandPalette({ setIsDimmed }) {
         }
 
         if (event.key === 'Enter') {
+            const value = event.target.value.toLowerCase().trim();
+            const cmd = cmds.find(cmd => value.includes(cmd.toLowerCase()));
+    
+            console.log('key down value:', value);
+            console.log(cmd);
             // console.log('index: ', selectedIndex);
 
             // Case #1: Select option
-            if (options.length > 1) {
+            // if (options.length > 1) {
+            if (!cmd) {
                 console.log('enter: select option');
 
                 const cmd = options[selectedIndex];
+                setSelectedCmd(cmd);
 
                 event.target.value = cmd;
                 event.target.focus();
@@ -152,9 +173,14 @@ export default function CommandPalette({ setIsDimmed }) {
             <div className='cmds-ctr'>
                 {
                     options.map((option, index) => {
+                        const splitOn = selectedCmd?.toLowerCase() || query;
+                        // console.log(splitOn);
+
                         const parts = option
-                            .split(new RegExp(`(${query})`, 'i'))
+                            .split(new RegExp(`(${splitOn})`, 'i'))
                             .filter(i => i);
+
+                            // console.log(parts);
 
                         return (
                             <div
@@ -167,11 +193,17 @@ export default function CommandPalette({ setIsDimmed }) {
                                     setQuery(option.toLowerCase());
                                     setOptions(cmds.filter(cmd => cmd.toLowerCase().includes(option.toLowerCase())));
                                     setSelectedIndex(0);
+
+                                    const cmd = cmds.find(cmd => cmd === option);
+                            
+                                    if (cmd) {
+                                        setSelectedCmd(cmd);
+                                    }
                                 }}
                             >
                                 <pre>
                                 {parts.map((part, index) => {
-                                    if (part.toLowerCase() === query) {
+                                    if (part.toLowerCase() === splitOn) {
                                         return (
                                             <span key={index} className='cmd-highlight'>{part}</span>
                                         );

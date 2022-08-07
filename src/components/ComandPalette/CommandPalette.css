@@ -18,7 +18,7 @@
     border-radius: 6px;
     background-color: var(--button-background);
     padding: 6px 12px;
-    margin: 0px 6px 2px;
+    margin: 0px 6px;
     outline: none;
     border: none;
     font-size: 1em;
@@ -51,6 +51,10 @@
     border-radius: 6px;
     display: flex;
     margin: 4px 6px;
+}
+
+.command-palette .cmd:first-child {
+    margin-top: 6px;
 }
 
 .command-palette .cmd:last-child {
