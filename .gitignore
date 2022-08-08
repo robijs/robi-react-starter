@@ -8,6 +8,7 @@ package-lock.json
 node_modules
 
 # Build generated files
+build
 dist
 config
 lib

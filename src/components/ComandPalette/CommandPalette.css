@@ -75,7 +75,12 @@
     font-family: var(--font-family);
 }
 
-.command-palette .cmd pre span {
+.command-palette .cmd pre span.cmd-param {
+    color: var(--color-shallow);
+    font-weight: 400;
+}
+
+.command-palette .cmd pre span.cmd-highlight {
     color: var(--primary-hsl-10);
     font-weight: 600;
 }

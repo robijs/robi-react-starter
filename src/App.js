@@ -82,7 +82,7 @@ export default function App() {
                 <Sidebar appname={title || name} pathname={pathname} />
                 <MainContainer title={pagetitle} lists={lists} />
             </AppContainer>
-            <CommandPalette setIsDimmed={setIsDimmed} />
+            {process.env.NODE_ENV === 'development' && <CommandPalette setIsDimmed={setIsDimmed} />}
         </ThemeProvider>
     );
 }
