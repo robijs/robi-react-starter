@@ -1,0 +1,9 @@
+.Settings {
+    display: flex;
+}
+
+.Settings .right-ctr {
+    padding: 60px 20px;
+    flex: 1;
+    overflow: overlay;
+}

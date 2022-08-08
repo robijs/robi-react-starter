@@ -10,14 +10,14 @@ import '@pnp/sp/fields'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import AppContainer from './components/AppContainer'
 import MainContainer from './components/MainContainer'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/SideBar'
 import CommandPalette from './components/ComandPalette/CommandPalette'
 import { app, lists, routes } from './config'
 import './App.css'
 
 export default function App() {
     const { pathname } = useLocation();
-    const [pagetitle, setPageTitle] = useState(routes.find(route => route.path === pathname).title);
+    const [pagetitle, setPageTitle] = useState(routes.find(route => route.path === pathname)?.title);
     const [loaded, setLoaded] = useState(false);
     const [isDimmed, setIsDimmed] = useState(false);
 
@@ -28,7 +28,7 @@ export default function App() {
     });
 
     useEffect(() => {
-        setPageTitle(routes.find(route => route.path === pathname).title);
+        setPageTitle(routes.find(route => route.path === pathname)?.title);
     }, [pathname]);
 
     const { name, site, title, localhost, localport, proxyport } = app;

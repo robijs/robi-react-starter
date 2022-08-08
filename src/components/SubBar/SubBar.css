@@ -1,0 +1,88 @@
+.subbar {
+    height: 100vh;
+    width: fit-content;
+    padding: 60px 20px 0px;
+    border-right: solid 1px var(--border-color);
+    overflow-y: overlay;
+    display: flex;
+    flex-direction: column;
+}
+
+.subbar .collapse-ctr {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.subbar .collapse-ctr i {
+    cursor: pointer;
+    padding: 10px 12px;
+    display: flex;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.subbar .title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: calc((.83em - 10px));
+    padding-left: 12px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0px;
+    flex: 2;
+}
+
+.nav li {
+    list-style-type: none;
+}
+
+.subbar a {
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    transition: width 300ms ease-in-out;
+}
+
+.subbar a span.nav-label {
+    padding: 10px 12px 10px 0px;
+    min-width: fit-content;
+}
+
+.subbar a span.nav-label.no-icon {
+    padding: 10px 12px;
+}
+
+.subbar a span.nav-label.no-icon span.closed-label {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subbar a i {
+    display: flex;
+    font-size: 20px;
+    color: var(--primary);
+    padding: 10px 12px;
+}
+
+.subbar a.selected {
+    background-color: var(--primary);
+}
+
+.subbar a.selected,
+.subbar a.selected * {
+    color: var(--secondary);
+}

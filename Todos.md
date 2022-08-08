@@ -1,18 +1,22 @@
 # Open
-<!-- Rethink forms (e.g., Robi's 'Add item' button in table toolbar, no need to have a separte form view) -->
 [ ] Default Forms
     [ ] Modal
     [ ] Full page
     [ ] New
     [ ] Edit
-[ ] Sidebar
+[ ] SideBar
 [ ] Themes (similar to Robi)
 [ ] Complete table UI/UX
     [ ] Add row
     [ ] Delete row(s)
     [ ] Edit row (modal)
     [ ] Pagination
+[ ] Put pages in dirs (same as components)
+[ ] Add .css for pages
+[ ] SubBar auto collapse (same as SideBar)
+[ ] Remove / from routes (not needed)
 
 # Done
 
 # Bugs
+[ ] SubBar selected nav link not working

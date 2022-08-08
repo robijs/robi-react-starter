@@ -13,7 +13,8 @@ export default function CommandPalette({ setIsDimmed }) {
         'Edit column',
         'Edit form',
         'Edit list',
-        'Edit page'
+        'Edit page',
+        'Add routes'
     ];
     const params = useMemo(() => {
         return {
@@ -26,7 +27,8 @@ export default function CommandPalette({ setIsDimmed }) {
             'Edit column': [],
             'Edit form': [],
             'Edit list': [],
-            'Edit page': []
+            'Edit page': [],
+            'Add routes': []
         }
     }, []);
     const [options, setOptions] = useState(cmds);
@@ -85,7 +87,7 @@ export default function CommandPalette({ setIsDimmed }) {
     }, [showCmds, setIsDimmed]);
 
     useEffect(() => {
-        console.log('Selected Command:', selectedCmd);
+        // console.log('Selected Command:', selectedCmd);
 
         if (selectedCmd) {
             console.log('Show selected command parameters');

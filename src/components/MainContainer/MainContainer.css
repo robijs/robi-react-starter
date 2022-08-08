@@ -6,6 +6,10 @@
     overflow: overlay;
 }
 
+.maincontainer.no-padding {
+    padding: 0px;
+}
+
 .maincontainer .title {
     font-size: 28px;
     font-weight: 700;
