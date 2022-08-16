@@ -4,7 +4,7 @@ import { routes } from '../../config'
 import classNames from 'classnames'
 import './SideBar.css'
 
-export default function Sidebar({ appname, pathname }) {
+export default function SideBar({ appname, pathname }) {
     const [open, setOpen] = useState(true);
 
     useEffect(() => {

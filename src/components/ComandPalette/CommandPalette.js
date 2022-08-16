@@ -3,19 +3,6 @@ import React, { useState, useRef, useEffect, useMemo } from 'react'
 import './CommandPalette.css'
 
 export default function CommandPalette({ setIsDimmed }) {
-    const cmds = [
-        'New component',
-        'New column',
-        'New form',
-        'New list',
-        'New page',
-        'Edit component',
-        'Edit column',
-        'Edit form',
-        'Edit list',
-        'Edit page',
-        'Add routes'
-    ];
     const params = useMemo(() => {
         return {
             'New component': ['Name'],
@@ -31,6 +18,7 @@ export default function CommandPalette({ setIsDimmed }) {
             'Add routes': []
         }
     }, []);
+    const cmds = Object.keys(params);
     const [options, setOptions] = useState(cmds);
     const [showCmds, setShowCmds] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -45,10 +33,12 @@ export default function CommandPalette({ setIsDimmed }) {
 
         function openModal(event) {
             if (
-                event.key === 'C' &&
+                (event.key.toLowerCase() === 'p') &&
                 event.shiftKey &&
-                (event.ctrlKey || event.metaKey)
+                (event.metaKey || event.ctrlKey)
             ) {
+                event.preventDefault();
+
                 if (!showCmds) {
                     window.addEventListener('click', closeModalOnClick);
                     setShowCmds(true);
@@ -96,27 +86,49 @@ export default function CommandPalette({ setIsDimmed }) {
 
     useEffect(() => {
         if (query && selectedCmd) {
-            const splitQueryOnComma = query
-                .split(selectedCmd.toLowerCase())
-                [1]
-                .trim()
-                .split(' ');
+            // const splitQueryOnComma = query
+            //     .split(selectedCmd.toLowerCase())
+            //     [1]
+            //     .trim()
+            //     .split(' ');
 
-            const paramsPresent = params[selectedCmd].filter((param, index) => splitQueryOnComma[index]);
+            // const paramsPresent = params[selectedCmd].filter((param, index) => splitQueryOnComma[index]);
 
-            console.log(params[selectedCmd], paramsPresent);
+            // console.log(query, selectedCmd, splitQueryOnComma, params[selectedCmd], paramsPresent);
 
-            if (params[selectedCmd].length === paramsPresent.length) {
-                setCanSubmit();
+            // if (params[selectedCmd].length === paramsPresent.length) {
+            //     setCanSubmit(true);
+            // } else {
+            //     setCanSubmit(false);
+            // }
+
+            const paramsPresent = 
+                query
+                    .split(' ')
+                    .slice([selectedCmd.split(' ').length])
+                    .filter(p => p);
+
+            // console.log(query.split(' '));
+            // console.log(selectedCmd.split(' ').length);
+            // console.log(params[selectedCmd]);
+            console.log(paramsPresent);
+
+            if (paramsPresent.length >= params[selectedCmd].length) {
+                console.log('Params:', paramsPresent.map((p, i) => `${params[selectedCmd][i]}: ${p}`));
+                setCanSubmit(true);
+            } else {
+                setCanSubmit(false);
             }
         }
     }, [params, query, selectedCmd]);
 
     useEffect(() => {
         if (canSubmit) {
-            console.log('✅ Can submit!');
+            console.log(`✅ Can submit '${selectedCmd}'!`);
+        } else {
+            console.log(`❌ Can't submit!`);
         }
-    }, [canSubmit]);
+    }, [selectedCmd, canSubmit]);
 
     function onKeyUp(event) {
         const value = event.target.value.toLowerCase().trim();
@@ -137,7 +149,9 @@ export default function CommandPalette({ setIsDimmed }) {
             }
         } else {
             setQuery(null);
-            setOptions(cmds)
+            setSelectedCmd(null);
+            setCanSubmit(false);
+            setOptions(cmds);
         }
     }
 
@@ -181,7 +195,7 @@ export default function CommandPalette({ setIsDimmed }) {
             const cmd = cmds.find(cmd => value.includes(cmd.toLowerCase()));
 
             console.log('key down value:', value);
-            console.log(cmd);
+            console.log('cmd:', cmd);
             // console.log('index: ', selectedIndex);
 
             // Case #1: Select option
@@ -272,15 +286,12 @@ export default function CommandPalette({ setIsDimmed }) {
                                         selectedCmd &&
                                             params[selectedCmd]
                                             .map((param, index) => {
-                                                const splitQueryOnComma = query
-                                                    .split(selectedCmd.toLowerCase())
-                                                    [1]
-                                                    .trim()
-                                                    .split(' ');
-
-                                                // console.log(param, index, splitQueryOnComma, splitQueryOnComma[index]);
-
-                                                const isParamPresent = splitQueryOnComma[index];
+                                                const paramsPresent = query
+                                                    .split(' ')
+                                                    .slice([selectedCmd.split(' ').length])
+                                                    .filter(p => p);
+                                                        
+                                                const isParamPresent = paramsPresent[index];
 
                                                 return (
                                                     <span key={param} className={classNames('cmd-param', { 'cmd-highlight': isParamPresent })}> {param}</span>

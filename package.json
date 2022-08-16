@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
+        "@coreui/react": "^4.0.0",
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
         "@mui/base": "^5.0.0-alpha.83",
         "@mui/material": "^5.9.3",
         "@mui/styled-engine-sc": "^5.9.3",
@@ -37,6 +40,18 @@
         "extends": [
             "react-app",
             "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
         ]
     }
 }

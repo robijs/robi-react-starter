@@ -10,7 +10,7 @@ import '@pnp/sp/fields'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import AppContainer from './components/AppContainer'
 import MainContainer from './components/MainContainer'
-import Sidebar from './components/SideBar'
+import SideBar from './components/SideBar'
 import CommandPalette from './components/ComandPalette/CommandPalette'
 import { app, lists, routes } from './config'
 import './App.css'
@@ -79,7 +79,7 @@ export default function App() {
         loaded &&
         <ThemeProvider theme={theme}>
             <AppContainer isDimmed={isDimmed}>
-                <Sidebar appname={title || name} pathname={pathname} />
+                <SideBar appname={title || name} pathname={pathname} />
                 <MainContainer title={pagetitle} lists={lists} />
             </AppContainer>
             {process.env.NODE_ENV === 'development' && <CommandPalette setIsDimmed={setIsDimmed} />}
